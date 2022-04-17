@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh">
   
   <head>
@@ -155,9 +155,16 @@
     }
 
     window.onload=function(){
+      //调整open-in-browser的高度
+      var openInBrowser=document.getElementById("open-in-browser");
+      var dw=document.body.clientWidth;
+      var dh=document.body.clientHeight;
+      var hintWidth=(dw>dh*530/976)?(dh*530/976*0.75):(dw*0.75);
+      var hintRigth=(dw-hintWidth/0.75)/2 + 5;
+      openInBrowser.style.width=hintWidth+"px";
+      openInBrowser.style.right=hintRigth+"px";
       //微信中提示在浏览器中打开
       if(isWeiXin()){
-        var openInBrowser=document.getElementById("open-in-browser");
         var showTimes=0;
         var hintTimer=setInterval(function(){
           var display=openInBrowser.style.display;
